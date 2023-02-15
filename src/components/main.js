@@ -10,15 +10,6 @@ export default function Main() {
           </Box>
         </Box>
         <Box display="flex" width="100%" mr={4}>
-          <Box display="flex" flex={1}>
-            Left
-          </Box>
-          <Divider
-            orientation="vertical"
-            sx={{ height: '100%', minHeight: '300px' }}
-          />
-          <Box display="flex" flex={1} ml={4}>
-            Right
           </Box>
         </Box>
       </Container>

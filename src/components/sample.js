@@ -13,7 +13,7 @@ export default function Sample({ prompt }) {
   async function getTextContents() {
     const result = await axios('http://localhost:3000/api/context', {
       params: {
-        prompt: 'Happy birhtday bryan!',
+        prompt,
       },
     });
     const content = JSON.parse(result.data.result);
@@ -29,6 +29,7 @@ export default function Sample({ prompt }) {
     const result = await axios('http://localhost:3000/api/regenerate', {
       params: {
         prompt: input,
+        topic: prompt,
       },
     });
     setterFn(result.data.result.trim());
@@ -45,7 +46,7 @@ export default function Sample({ prompt }) {
   return (
     <Box display="flex" flexDirection="column" width="100%" height="100%">
       <Box
-        height="840px"
+        height="100vh"
         width="100%"
         sx={{
           backgroundImage:
@@ -58,13 +59,13 @@ export default function Sample({ prompt }) {
         <Box
           display="flex"
           flexDirection="column"
-          width="450px"
-          height="250px"
+          width="550px"
+          height="300px"
           bgcolor="white"
           p={5}
         >
           <Box display="flex" alignItems="center">
-            <Box component="span" fontSize={26} fontWeight={800}>
+            <Box component="span" fontSize={24} fontWeight={800}>
               {title}
             </Box>
             <IconButton
@@ -75,7 +76,7 @@ export default function Sample({ prompt }) {
             </IconButton>
           </Box>
           <Box display="flex" alignItems="center">
-            <Box component="span" fontSize={22} fontWeight={500} marginTop={2}>
+            <Box component="span" fontSize={20} fontWeight={500} marginTop={2}>
               {headline}
             </Box>
             <IconButton
@@ -94,6 +95,7 @@ export default function Sample({ prompt }) {
         display="flex"
         justifyContent="center"
         alignItems="center"
+        paddingBottom={6}
       >
         <Container>
           <Grid container>
@@ -128,12 +130,7 @@ export default function Sample({ prompt }) {
                 pr={5}
               >
                 <Box display="flex" alignItems="center">
-                  <Box
-                    component="span"
-                    fontSize={22}
-                    fontWeight={500}
-                    marginTop={2}
-                  >
+                  <Box component="span" fontSize={22} fontWeight={500}>
                     {description}
                   </Box>
                   <IconButton

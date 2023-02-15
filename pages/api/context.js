@@ -1,6 +1,6 @@
 import { Configuration, OpenAIApi } from 'openai';
 
-const apiKey = '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';
+const apiKey = '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';
 
 const configuration = new Configuration({
   apiKey,
@@ -8,8 +8,13 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 export default async function getTitle(req, res) {
-  const { prompt } = req.query;
-  const GET_HEADER = `could you generate a title, description, and a headline for ${prompt}. Response as json format. Title should not be longer than 30 characters. Description also should not be less than 450 characters.`;
+  const { prompt, tone } = req.query;
+  const GET_HEADER = `could you generate a title, description, and a headline for ${prompt}. Response as json format.
+  Title should be between 50 and 60 characters.
+  Headlines should be between 60 and 100 characters.
+  Description must be greater than 400 characters.
+  The tone of the reponse should be ${tone}
+  `;
 
   try {
     const completion = await openai.createCompletion({
